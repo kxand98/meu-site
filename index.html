@@ -5,20 +5,167 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Serviços de Obra - Cesar</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-    header { background-color: #222; color: white; padding: 20px; text-align: center; }
-    nav { background: #444; display: flex; justify-content: center; padding: 10px 0; }
-    nav a { color: white; margin: 0 15px; text-decoration: none; }
-    section { padding: 40px 20px; max-width: 1000px; margin: auto; }
-    .card { background: #f0f0f0; padding: 20px; margin-bottom: 20px; border-radius: 10px; }
-    .card img { width: 100%; max-height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; }
-    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-    footer { text-align: center; background: #222; color: white; padding: 20px; }
-    .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: white; padding: 12px 18px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
-    input, select, button, textarea {
-      padding: 10px; margin: 10px 0; width: 100%; max-width: 400px; border-radius: 6px; border: 1px solid #ccc;
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fefefe;
     }
-    .success { color: green; margin-top: 10px; font-weight: bold; }
+
+    header {
+      background-color: #0a56d6;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    nav {
+      background: #0a56d6;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding-bottom: 20px;
+    }
+
+    nav a {
+      color: white;
+      background-color: #1a6eff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      background-color: #004ec2;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+    }
+
+    .servicos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #f0f0f0;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    select, input, textarea, button {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    button {
+      background-color: #00a779;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #008c63;
+    }
+
+    .success {
+      color: green;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .form-row input,
+    .form-row textarea {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .whatsapp-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #00a779;
+      font-weight: bold;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+
+    .whatsapp-link::before {
+      content: "✅";
+    }
+
+    footer {
+      text-align: center;
+      background: #222;
+      color: white;
+      padding: 20px;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      z-index: 999;
+    }
   </style>
 </head>
 <body>
@@ -37,30 +184,31 @@
 
   <section id="servicos">
     <h2>Serviços oferecidos</h2>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1588856125254-7a1df2a7b0e9?auto=format&fit=crop&w=800&q=80" alt="Pintura residencial">
-      <h3>Pintura residencial</h3>
-      <p>Acabamento profissional em ambientes internos e externos.</p>
-      <strong>R$ 20 por m²</strong>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1608500212196-f6a5c949741f?auto=format&fit=crop&w=800&q=80" alt="Reboco">
-      <h3>Reboco de parede</h3>
-      <p>Aplicação manual ou projetada.</p>
-      <strong>R$ 25 por m²</strong>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1616531770131-1aa8cc951cc5?auto=format&fit=crop&w=800&q=80" alt="Piso">
-      <h3>Assentamento de piso</h3>
-      <p>Assentamento de pisos cerâmicos com nivelamento.</p>
-      <strong>R$ 35 por m²</strong>
+    <div class="servicos-grid">
+      <div class="card">
+        <img src="https://www.drimpermeabilizacao.com.br/assets/images/pintura-fachada-800x500.jpg" alt="Pintura residencial">
+        <h3>Pintura residencial</h3>
+        <p>Acabamento profissional em ambientes internos e externos.</p>
+        <strong>R$ 20 por m²</strong>
+      </div>
+      <div class="card">
+        <img src="reboco.jpg"  alt="Reboco de parede">
+        <h3>Reboco de parede</h3>
+        <p>Aplicação manual ou projetada.</p>
+        <strong>R$ 25 por m²</strong>
+      </div>
+      <div class="card">
+        <img src="https://www.embramaco.com.br/blog/wp-content/uploads/2022/05/emb_blog_post_04_junho_18_sem_04-650x340-1.png" alt="Assentamento de piso">
+        <h3>Assentamento de piso</h3>
+        <p>Assentamento de pisos cerâmicos com nivelamento.</p>
+        <strong>R$ 35 por m²</strong>
+      </div>
     </div>
   </section>
 
   <section id="orcamento">
     <h2>Calcule seu orçamento</h2>
-    <p>Informe os dados abaixo para simular o valor aproximado do serviço.</p>
+    <p>Informe os dados abaixo para simular o valor <strong>aproximado</strong> do serviço.</p>
     <select id="servico">
       <option value="20">Pintura residencial - R$ 20/m²</option>
       <option value="25">Reboco de parede - R$ 25/m²</option>
@@ -74,26 +222,25 @@
   <section id="galeria">
     <h2>Galeria de Fotos</h2>
     <div class="gallery">
-      <img src="https://images.unsplash.com/photo-1604998116924-84c09dd1d6d9?auto=format&fit=crop&w=800&q=80" alt="Trabalho 1">
-      <img src="https://images.unsplash.com/photo-1617082225400-5c05d4b05395?auto=format&fit=crop&w=800&q=80" alt="Trabalho 2">
-      <img src="https://images.unsplash.com/photo-1608500205809-74f429007e51?auto=format&fit=crop&w=800&q=80" alt="Trabalho 3">
-      <img src="https://images.unsplash.com/photo-1581091215367-59fdb4d1076b?auto=format&fit=crop&w=800&q=80" alt="Trabalho 4">
+      <img src="reboco.jpg" alt="Pintor em fachada">
+      <img src="pintorcerto.jpg" alt="Assentamento de piso">
+      <img src="pintor.jpg" alt="Pintor com rolo">
+      <img src="construçao.jpg" alt="Escavadora em obra">
     </div>
   </section>
 
   <section id="contato">
     <h2>Fale comigo</h2>
     <form onsubmit="enviarMensagem(event)">
-      <input type="text" id="nome" placeholder="Seu nome" required />
-      <input type="email" id="email" placeholder="Seu e-mail" required />
-      <textarea id="mensagem" placeholder="Escreva sua mensagem..." rows="4" required></textarea>
+      <div class="form-row">
+        <input type="text" id="nome" placeholder="Seu nome" required />
+        <textarea id="mensagem" placeholder="Escreva sua mensagem..." rows="4" required></textarea>
+      </div>
       <button type="submit">Enviar</button>
       <p id="confirmacao" class="success"></p>
     </form>
-    <ul>
-      <li>📱 WhatsApp: <a href="https://wa.me/5551981384075" target="_blank">Clique aqui</a></li>
-      <li>📧 Email: cesar@email.com (exemplo)</li>
-    </ul>
+    <p>📱 WhatsApp: <a class="whatsapp-link" href="https://wa.me/5551981384075" target="_blank">Clique aqui</a></p>
+    <p>📧 Email: cesar@email.com</p>
   </section>
 
   <footer>
@@ -117,12 +264,10 @@
     function enviarMensagem(event) {
       event.preventDefault();
       const nome = document.getElementById('nome').value;
-      const email = document.getElementById('email').value;
       const mensagem = document.getElementById('mensagem').value;
 
-      if (nome && email && mensagem) {
+      if (nome && mensagem) {
         document.getElementById('confirmacao').textContent = "Mensagem enviada com sucesso! Em breve entrarei em contato.";
-        // Aqui você pode integrar com backend futuramente
       } else {
         document.getElementById('confirmacao').textContent = "Preencha todos os campos.";
       }
