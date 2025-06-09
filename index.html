@@ -19,24 +19,19 @@
       text-align: center;
     }
 
-    header h1 {
-      font-size: 2.2em;
-      margin: 0;
-    }
-
     nav {
       background: #0a56d6;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 15px;
-      padding: 15px 20px;
+      gap: 10px;
+      padding: 10px 0 20px;
     }
 
     nav a {
       color: white;
       background-color: #1a6eff;
-      padding: 10px 18px;
+      padding: 10px 20px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
@@ -78,8 +73,7 @@
 
     .card img {
       width: 100%;
-      height: auto;
-      max-height: 200px;
+      height: 180px;
       object-fit: cover;
       border-radius: 8px;
       margin-bottom: 10px;
@@ -122,8 +116,7 @@
 
     .gallery img {
       width: 100%;
-      height: auto;
-      max-height: 180px;
+      height: 180px;
       object-fit: cover;
       border-radius: 8px;
     }
@@ -174,32 +167,6 @@
       box-shadow: 0 4px 6px rgba(0,0,0,0.2);
       z-index: 999;
     }
-
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 1.8em;
-        word-break: break-word;
-      }
-
-      section {
-        padding: 20px 15px;
-      }
-
-      .form-row {
-        flex-direction: column;
-      }
-
-      input, textarea {
-        width: 100% !important;
-      }
-
-      .whatsapp-float {
-        padding: 10px 14px;
-        font-size: 14px;
-        bottom: 15px;
-        right: 15px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -226,7 +193,7 @@
         <strong>R$ 20 por m²</strong>
       </div>
       <div class="card">
-        <img src="reboco.jpg" alt="Reboco de parede">
+        <img src="reboco.jpg"  alt="Reboco de parede">
         <h3>Reboco de parede</h3>
         <p>Aplicação manual ou projetada.</p>
         <strong>R$ 25 por m²</strong>
@@ -244,13 +211,14 @@
     <h2>Calcule seu orçamento</h2>
     <p>Informe os dados abaixo para simular o valor <strong>aproximado</strong> do serviço.</p>
     <select id="servico">
-      <option value="20">Pintura residencial - R$ 20/m²</option>
-      <option value="25">Reboco de parede - R$ 25/m²</option>
-      <option value="35">Assentamento de piso - R$ 35/m²</option>
+      <option value="20" data-label="Pintura residencial">Pintura residencial - R$ 20/m²</option>
+      <option value="25" data-label="Reboco de parede">Reboco de parede - R$ 25/m²</option>
+      <option value="35" data-label="Assentamento de piso">Assentamento de piso - R$ 35/m²</option>
     </select>
     <input type="number" id="metros" placeholder="Quantidade de metros²" />
     <button onclick="calcularOrcamento()">Calcular</button>
     <p id="resultado" class="success"></p>
+    <a id="botao-whats" href="#" class="whatsapp-link" style="display:none;" target="_blank">📤 Enviar orçamento por WhatsApp</a>
   </section>
 
   <section id="galeria">
@@ -285,13 +253,25 @@
 
   <script>
     function calcularOrcamento() {
-      const preco = parseFloat(document.getElementById('servico').value);
+      const select = document.getElementById('servico');
+      const preco = parseFloat(select.value);
+      const servicoLabel = select.options[select.selectedIndex].dataset.label;
       const metros = parseFloat(document.getElementById('metros').value);
-      if (!isNaN(preco) && !isNaN(metros)) {
+
+      if (!isNaN(preco) && !isNaN(metros) && metros > 0) {
         const total = preco * metros;
-        document.getElementById('resultado').textContent = `Valor estimado: R$ ${total.toFixed(2)}`;
+        const resultado = `Valor estimado: R$ ${total.toFixed(2)} para ${metros} m² de ${servicoLabel}`;
+        document.getElementById('resultado').textContent = resultado;
+
+        const mensagem = `Olá, gostaria de solicitar um orçamento:\n\nServiço: ${servicoLabel}\nÁrea: ${metros} m²\nValor estimado: R$ ${total.toFixed(2)}`;
+        const link = `https://wa.me/5551981384075?text=${encodeURIComponent(mensagem)}`;
+
+        const botao = document.getElementById('botao-whats');
+        botao.href = link;
+        botao.style.display = 'inline-block';
       } else {
         document.getElementById('resultado').textContent = 'Preencha corretamente os campos.';
+        document.getElementById('botao-whats').style.display = 'none';
       }
     }
 
@@ -307,5 +287,6 @@
       }
     }
   </script>
+
 </body>
 </html>
